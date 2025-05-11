@@ -1,3 +1,14 @@
+<?php
+
+    session_start();
+
+    $authenticated = $_SESSION['authenticated'] ?? 0;
+    $failedAttempts = $_SESSION['failed_attempts'] ?? 0;
+    $messageFailAttempts = "</br>";
+    if ($failedAttempts >= 1) {
+      $messageFailAttempts = "<p>This is unsuccessful attempt number " . $_SESSION['failed_attempts']."</p>";
+    }
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,6 +17,7 @@
 <body>
 
     <h1>Login Form</h1>
+    <?php echo $messageFailAttempts;?>
     <form action="/validate.php" method="post">
       <label for="username">Username:</label>
         <br>

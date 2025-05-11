@@ -1,6 +1,13 @@
 <?php
 
-session_start();
+    session_start();
+    //Check if the user is authenticated
+    //If not, send them to login.php
+    $authenticated = $_SESSION['authenticated'] ?? 0;
+
+    if ($authenticated != 1) {
+        header('location: /login.php');
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -11,7 +18,8 @@ session_start();
 
     <h1>Assignment 1</h1>
     <p>Welcome, <?=$_SESSION['username']?></p>
-    <p><a href="/login.php">Click here to log in </a></p>
+
 
 </body>
+    <footer> <a href="/logout.php">Click here to log out </a></footer>
 </html>
